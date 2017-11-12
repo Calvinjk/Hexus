@@ -81,6 +81,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HexMap\HexCell.cs" />
+    <Compile Include="Assets\HexMap\HexCoordinates.cs" />
+    <Compile Include="Assets\HexMap\HexGrid.cs" />
+    <Compile Include="Assets\HexMap\HexMesh.cs" />
+    <Compile Include="Assets\HexMap\HexMetrics.cs" />
     <Compile Include="Assets\Units\Unit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
