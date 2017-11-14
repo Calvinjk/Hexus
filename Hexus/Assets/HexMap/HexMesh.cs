@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This file actually creates the visuals of the Hexagons
+/// </summary>
+
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour {
 
@@ -9,17 +13,24 @@ public class HexMesh : MonoBehaviour {
     List<Vector3> verticies;
     List<int> triangles;
 
+    // True = Flat side up
+    // False = Pointy side up
+    // Do not mess with this, it is set in HexGrid 
     private bool flipOrientation;
 
     void Awake() {
+        // Figure out the orientation of the hexs based on the information in HexGrid
         flipOrientation = GetComponentInParent<HexGrid>().flipOrientation;
 
+        // Create a new mesh and set up necessary lists.
         GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
         hexMesh.name = "HexMesh";
         verticies = new List<Vector3>();
         triangles = new List<int>();
     }
 
+    // Given an array of HexCells (their positions are already set),
+    // start to make them visible with the mesh.
     public void Triangulate(HexCell[] cells) {
         hexMesh.Clear();
         verticies.Clear();
@@ -32,6 +43,7 @@ public class HexMesh : MonoBehaviour {
         hexMesh.RecalculateNormals();
     }
 
+    // Create each hexagon using 4 triangles.
     void Triangulate(HexCell cell) {
         Vector3 center = cell.transform.localPosition;
         if (flipOrientation) { // Flat side up
@@ -47,6 +59,7 @@ public class HexMesh : MonoBehaviour {
         }
     }
 
+    // Given a triangle's vector points, add it to the mesh
     void AddTriangle(Vector3 v1, Vector3 v2, Vector3 v3) {
         int vertexIndex = verticies.Count;
         verticies.Add(v1);

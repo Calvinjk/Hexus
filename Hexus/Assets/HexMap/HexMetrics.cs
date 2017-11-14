@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// HexMetrics is a const/static class that holds information about hexagon geometry that is used in other files
+/// </summary>
+
 public class HexMetrics : MonoBehaviour {
 
     public const float outerRadius = 10f;

@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This is the class that actually creates the hex board.
+/// Attach this script to a gameobject and throw it in the scene to create a hex board on load.
+/// 
+/// It will generate a width x height board of hexs that have the specified orientation.
+/// You can optionally show the coordinates of each hex on top of them.  This should be turned off for release.
+/// </summary>
+
 public class HexGrid : MonoBehaviour {
 
     [Tooltip("For testing and debugging turn this on to see coordinates")]
@@ -22,6 +30,7 @@ public class HexGrid : MonoBehaviour {
     private HexMesh hexMesh;
 
     void Awake() {
+        // The canvas is used to show the coordinates, the mesh to render the hexagons
         gridCanvas = GetComponentInChildren<Canvas>();
         hexMesh = GetComponentInChildren<HexMesh>();
 
@@ -34,10 +43,12 @@ public class HexGrid : MonoBehaviour {
         }
     }
 
+    // The positions of every cell was created in awake, now we need to render them
     void Start() {
         hexMesh.Triangulate(cells);
     }
 
+    // Creates cells in the correct positions, offsets to make hexagons line up nicely
     void CreateCell(int x, int z, int i) {
         Vector3 position;
         if (flipOrientation) { // Flat side up
