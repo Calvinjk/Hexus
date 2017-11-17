@@ -22,9 +22,9 @@ namespace Wunderwunsch.HexGridSimplified
         void Update()
         {
             Vector3Int closestEdge = HexConverter.WorldPositionToClosestEdge(mouse.WorldPositionWrapped);
-            List<Vector3Int> adjacentTiles = Hex.GetAdjacentTilesOfEdge(closestEdge,true);
+            List<Vector3Int> adjacentTiles = HexDepreciated.GetAdjacentTilesOfEdge(closestEdge,true);
 
-            float edgeDirection = Hex.GetEdgeDirectionAngle(closestEdge);
+            float edgeDirection = HexDepreciated.GetEdgeDirectionAngle(closestEdge);
             Vector3 edgeWorldPos = HexConverter.EdgeCoordToWorldPosition(closestEdge);
 
             edgeMarker.transform.position = edgeWorldPos;

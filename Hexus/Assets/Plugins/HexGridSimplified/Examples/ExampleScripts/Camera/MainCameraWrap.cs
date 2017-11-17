@@ -33,7 +33,7 @@ namespace Wunderwunsch.HexGridSimplified
             float aspect = c.aspect;
             float orthographicWidth = c.orthographicSize; //half-size
 
-            float mapWidth = Hex.MapSize.x;
+            float mapWidth = HexDepreciated.MapSize.x;
             Vector3 renderQuadScale = new Vector3
             {
                 y = orthographicWidth * 2,
@@ -43,8 +43,8 @@ namespace Wunderwunsch.HexGridSimplified
             wrapCameraRenderQuad.transform.localScale = renderQuadScale;
 
             negativeJumpThreshold = -(aspect * 2 * orthographicWidth * 0.8f);
-            positiveJumpThreshold = (mapWidth * Constants.sqrt3) + (aspect * 2 * orthographicWidth * 0.8f);//1.1 just to have some margin, might not be needed
-            jumpLength = mapWidth * Constants.sqrt3;
+            positiveJumpThreshold = (mapWidth * Mathf.Sqrt(3)) + (aspect * 2 * orthographicWidth * 0.8f);//1.1 just to have some margin, might not be needed
+            jumpLength = mapWidth * Mathf.Sqrt(3);
         }
     }
 }

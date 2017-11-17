@@ -37,7 +37,7 @@ namespace Wunderwunsch.HexGridSimplified
                 if(SelectedObject!= null)
                 {
                     Vector3Int mouseCubePos = mouse.CubePositionSanitized;
-                    if(mouse.OffsetPositionRaw.y >= 0 && mouse.OffsetPositionRaw.y < Hex.MapSize.y)
+                    if(mouse.OffsetPositionRaw.y >= 0 && mouse.OffsetPositionRaw.y < HexDepreciated.MapSize.y)
                     {
                         Vector3 centerOfHex = HexConverter.CubeCoordToWorldPosition(mouseCubePos);
                         SelectedObject.transform.position = centerOfHex;

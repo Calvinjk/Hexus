@@ -15,13 +15,13 @@ namespace Wunderwunsch.HexGridSimplified
             HashSet<Vector3Int> markedAsVisible = new HashSet<Vector3Int>();
 
             Vector3Int pos = HexConverter.WorldPositionToCubeCoord(transform.position);
-            IEnumerable<Vector3Int> targets = Hex.GetRing(pos, VisionRange,1, false); //can always be map 0 as this ring is just a helper result to draw teh lines
+            IEnumerable<Vector3Int> targets = HexDepreciated.GetRing(pos, VisionRange,1, false); //can always be map 0 as this ring is just a helper result to draw teh lines
 
             //TODO: check if we changed aeverything properly
             foreach (var target in targets)
             {
-                List<Vector3Int> linePointsL = Hex.GetLine(pos, target, -0.00001f, 1, 0, true);
-                List<Vector3Int> linePointsR = Hex.GetLine(pos, target, +0.00001f, 1, 0, true);
+                List<Vector3Int> linePointsL = HexDepreciated.GetLine(pos, target, -0.00001f, 1, 0, true);
+                List<Vector3Int> linePointsR = HexDepreciated.GetLine(pos, target, +0.00001f, 1, 0, true);
 
                 List<Vector3Int> visibleL = CheckVisibility(linePointsL);
                 List<Vector3Int> visibleR = CheckVisibility(linePointsR);

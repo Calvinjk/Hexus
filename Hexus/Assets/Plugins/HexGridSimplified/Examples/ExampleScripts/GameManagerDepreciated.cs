@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Wunderwunsch.HexGridSimplified
 {    
-    public class GameManager : MonoBehaviour
+    public class GameManagerDepreciated : MonoBehaviour
     {
         [SerializeField]
         private Camera primaryCamera = null;
@@ -19,7 +19,7 @@ namespace Wunderwunsch.HexGridSimplified
         void Start()
         {
             InitMap();
-            Debug.Log("HexMapSize: " + Hex.MapSize);
+            Debug.Log("HexMapSize: " + HexDepreciated.MapSize);
             InitCameras();
             InitUnits();
         }

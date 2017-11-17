@@ -70,7 +70,7 @@ namespace Wunderwunsch.HexGridSimplified
         {
             if (WrapsHorizontal)
             {
-                posB = HexUtility.GetCloserTargetPositionIncludingHorizontalWrap(posA, posB, MapSize.x);
+                posB = HexUtilityDepreciated.GetCloserTargetPositionIncludingHorizontalWrap(posA, posB, MapSize.x);
             }
 
             int DeltaX = Mathf.Abs(posA.x - posB.x);
@@ -158,15 +158,15 @@ namespace Wunderwunsch.HexGridSimplified
         {
             if(WrapsHorizontal)
             {
-                target = HexUtility.GetCloserTargetPositionIncludingHorizontalWrap(origin, target, MapSize.x);
+                target = HexUtilityDepreciated.GetCloserTargetPositionIncludingHorizontalWrap(origin, target, MapSize.x);
             }
             List<Vector3Int> lineCells = new List<Vector3Int>();
 
             var dist = Distance(origin, target);
             for (int i = trimStart; i <= dist - trimEnd; i++)
             {
-                Vector3 lerped = HexUtility.LerpCube(origin, target, offsetFromOriginCenter, (1f / dist) * i);
-                Vector3Int cell = HexUtility.RoundCube(lerped);
+                Vector3 lerped = HexUtilityDepreciated.LerpCube(origin, target, offsetFromOriginCenter, (1f / dist) * i);
+                Vector3Int cell = HexUtilityDepreciated.RoundCube(lerped);
                 lineCells.Add(cell);
             }
 
@@ -372,7 +372,7 @@ namespace Wunderwunsch.HexGridSimplified
             {
                 for (int i = 0; i< tiles.Count; i++)
                 {
-                    tiles[i]= Hex.WrapHorizontal(tiles[i], MapSize.x);
+                    tiles[i]= HexDepreciated.WrapHorizontal(tiles[i], MapSize.x);
                 }
                 return tiles.ToList();
             }

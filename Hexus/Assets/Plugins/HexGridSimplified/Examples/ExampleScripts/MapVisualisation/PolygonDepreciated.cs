@@ -5,31 +5,31 @@ using UnityEngine;
 namespace Wunderwunsch.HexGridSimplified
 {
     /// Helperclass to Create Meshdata of Regular Convex Polygons, st
-    public class Polygon
+    public class PolygonDepreciated
     {
         public Vector3[] Vertices { get; private set; }
         public int[] Triangles { get; private set; }
         public Vector2[] UVs { get; private set; }
 
-        private Polygon(Vector3[] vertices, int[] tris)
+        private PolygonDepreciated(Vector3[] vertices, int[] tris)
         {
             this.Vertices = vertices;
             this.Triangles = tris;
             this.UVs = new Vector2[vertices.Length];
         }
 
-        private Polygon(Vector3[] vertices, int[] tris, Vector2[] uvs)
+        private PolygonDepreciated(Vector3[] vertices, int[] tris, Vector2[] uvs)
         {
             this.Vertices = vertices;
             this.Triangles = tris;
             this.UVs = uvs;
         }
 
-        public static Polygon CreateNGon(int sides, Vector3 PositionFirstVertex, Vector3 rotationalAxis, bool addCentroid)
+        public static PolygonDepreciated CreateNGon(int sides, Vector3 PositionFirstVertex, Vector3 rotationalAxis, bool addCentroid)
         {
             Vector3[] verts = CreateVertices(PositionFirstVertex, rotationalAxis, sides, addCentroid);
             int[] triangles = CreateTriangles(sides, addCentroid, true);
-            Polygon polygon = new Polygon(verts, triangles);
+            PolygonDepreciated polygon = new PolygonDepreciated(verts, triangles);
             return polygon;
         }
 
@@ -111,48 +111,48 @@ namespace Wunderwunsch.HexGridSimplified
         /// <summary>
         /// combines multiple Polygons into one
         /// </summary>
-        public static Polygon Combine(List<Polygon> polygons)
+        public static PolygonDepreciated Combine(List<PolygonDepreciated> polygons)
         {
             int offset = 0;
             List<Vector3> points = new List<Vector3>();
             List<int> triangles = new List<int>();
             List<Vector2> uvs = new List<Vector2>();
-            foreach (Polygon data in polygons)
+            foreach (PolygonDepreciated data in polygons)
             {
-                Polygon adjusted = data.OffsetTriangleIndices(offset);
+                PolygonDepreciated adjusted = data.OffsetTriangleIndices(offset);
                 offset += adjusted.Vertices.Length;
                 points.AddRange(adjusted.Vertices);
                 uvs.AddRange(adjusted.UVs);
                 triangles.AddRange(adjusted.Triangles);
             }
-            Polygon combined = new Polygon(points.ToArray(), triangles.ToArray());
+            PolygonDepreciated combined = new PolygonDepreciated(points.ToArray(), triangles.ToArray());
             return combined;
         }
 
         /// <summary>
         /// returns new Polygon with offset position of all vertices
         /// </summary>
-        public Polygon OffsetPosition(Vector3 offset)
+        public PolygonDepreciated OffsetPosition(Vector3 offset)
         {
             Vector3[] newVerts = new Vector3[Vertices.Length];
             for (int i = 0; i < Vertices.Length; i++)
             {
                 newVerts[i] = Vertices[i] + offset;
             }
-            return new Polygon(newVerts, Triangles);
+            return new PolygonDepreciated(newVerts, Triangles);
         }
 
         /// <summary>
         /// returns new Polygon with offset Triangle Indices - used for merging multiple Polygons into one
         /// </summary>
-        private Polygon OffsetTriangleIndices(int offset)
+        private PolygonDepreciated OffsetTriangleIndices(int offset)
         {
             int[] newTris = new int[Triangles.Length];
             for (int i = 0; i < newTris.Length; i++)
             {
                 newTris[i] = Triangles[i] + offset;
             }
-            return new Polygon(Vertices, newTris);
+            return new PolygonDepreciated(Vertices, newTris);
         }
 
         public Mesh ToMesh()

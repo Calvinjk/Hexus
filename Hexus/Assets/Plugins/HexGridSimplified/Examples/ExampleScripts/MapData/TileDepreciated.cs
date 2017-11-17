@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Wunderwunsch.HexGridSimplified
 {
-    public struct Tile
+    public struct TileDepreciated
     {
         public int BaseTerrain { get; private set; }
         public int Topography { get; private set; }
         public int Vegetation { get; private set; }
 
-        public Tile(int baseTerrain, int topography, int vegetation)
+        public TileDepreciated(int baseTerrain, int topography, int vegetation)
         {
             this.BaseTerrain = baseTerrain; //Plains, Grassland, Desert etc.
             this.Topography = topography; //Flat, Hills, Mountains etc.

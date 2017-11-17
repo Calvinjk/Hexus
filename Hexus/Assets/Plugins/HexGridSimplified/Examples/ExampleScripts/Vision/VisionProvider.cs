@@ -11,7 +11,7 @@ namespace Wunderwunsch.HexGridSimplified
     public abstract class VisionProvider : MonoBehaviour
     {
         [SerializeField]
-        GameManager gameManager = null;
+        GameManagerDepreciated gameManager = null;
         [SerializeField]
         protected VisibilityManager visibilityExample;
         protected Map map;

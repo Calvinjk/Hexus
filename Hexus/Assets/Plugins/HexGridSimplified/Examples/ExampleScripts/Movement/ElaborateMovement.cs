@@ -44,7 +44,7 @@ namespace Wunderwunsch.HexGridSimplified
 
             foreach (var tile in TilesInRange.Keys)
             {
-                HashSet<Vector3Int> edgeCoordsOfCell = Hex.GetEdgeCoordinatesOfTile(tile);
+                HashSet<Vector3Int> edgeCoordsOfCell = HexDepreciated.GetEdgeCoordinatesOfTile(tile);
                 foreach (var c in edgeCoordsOfCell)
                 {
                     if (edges.Contains(c)) edges.Remove(c);
@@ -64,7 +64,7 @@ namespace Wunderwunsch.HexGridSimplified
 
                 //the following rotates the edges in such a way that they are always facing inwards
                 //fails at the world seam, should be easy enough to fix
-                List<Vector3Int> adjacent = Hex.GetAdjacentTilesOfEdge(e,false);
+                List<Vector3Int> adjacent = HexDepreciated.GetAdjacentTilesOfEdge(e,false);
                 if(TilesInRange.ContainsKey(adjacent[1]))
                 {
                     g.transform.Rotate(0, 180, 0);
@@ -136,7 +136,7 @@ namespace Wunderwunsch.HexGridSimplified
         public override int CalculateCostBetweenTiles(Vector3Int posA, Vector3Int posB)
         {
             Vector2Int posBOffset = HexConverter.CubeCoordToOffsetCoord(posB);
-            Tile tileB = map.Tiles[posBOffset.x, posBOffset.y];
+            TileDepreciated tileB = map.Tiles[posBOffset.x, posBOffset.y];
             int terrainID = tileB.BaseTerrain;
             int topoID = tileB.Topography;
             int vegetationID = tileB.Vegetation;
@@ -152,7 +152,7 @@ namespace Wunderwunsch.HexGridSimplified
         {
             
             Vector2Int posAOffset = HexConverter.CubeCoordToOffsetCoord(posA);
-            Tile tileA = map.Tiles[posAOffset.x, posAOffset.y];
+            TileDepreciated tileA = map.Tiles[posAOffset.x, posAOffset.y];
             int terrainID = tileA.BaseTerrain;
             int topoID = tileA.Topography;
             int vegetationID = tileA.Vegetation;

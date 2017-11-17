@@ -49,7 +49,7 @@ namespace Wunderwunsch.HexGridSimplified
         private void ShowRing(Vector3Int center)
         {
             CleanUp();
-            HashSet<Vector3Int> result = Hex.GetRing(center, (int)rangeSlider.value, (int)thicknessSlider.value, removeInvalidToggle.isOn);
+            HashSet<Vector3Int> result = HexDepreciated.GetRing(center, (int)rangeSlider.value, (int)thicknessSlider.value, removeInvalidToggle.isOn);
             PlaceMarkers(result);
 
         }
@@ -57,7 +57,7 @@ namespace Wunderwunsch.HexGridSimplified
         private void ShowAllInRange(Vector3Int center)
         {
             CleanUp();
-            HashSet<Vector3Int> result = Hex.GetAllWithinManhattanRange(center, (int)rangeSlider.value, true, removeInvalidToggle.isOn);
+            HashSet<Vector3Int> result = HexDepreciated.GetAllWithinManhattanRange(center, (int)rangeSlider.value, true, removeInvalidToggle.isOn);
             PlaceMarkers(result);
 
         }

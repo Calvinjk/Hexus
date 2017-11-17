@@ -19,7 +19,7 @@ namespace Wunderwunsch.HexGridSimplified
 
             Vector3Int pos = HexConverter.WorldPositionToCubeCoord(transform.position);
             
-            IEnumerable<Vector3Int> targets = Hex.GetRing(pos, VisionRange,1, false); //can always be map 0 as this ring is just a helper result to draw teh lines
+            IEnumerable<Vector3Int> targets = HexDepreciated.GetRing(pos, VisionRange,1, false); //can always be map 0 as this ring is just a helper result to draw teh lines
 
             //TODO: check if we changed aeverything properly
             foreach (var target in targets)
@@ -32,8 +32,8 @@ namespace Wunderwunsch.HexGridSimplified
                 Debug.Log(angle);
                 if(Mathf.Abs(angle) > halfVisionConeAngle) continue;
 
-                List<Vector3Int> linePointsL = Hex.GetLine(pos, target, -0.00001f, 1, 0, true);
-                List<Vector3Int> linePointsR = Hex.GetLine(pos, target, +0.00001f, 1, 0, true);
+                List<Vector3Int> linePointsL = HexDepreciated.GetLine(pos, target, -0.00001f, 1, 0, true);
+                List<Vector3Int> linePointsR = HexDepreciated.GetLine(pos, target, +0.00001f, 1, 0, true);
 
                 List<Vector3Int> visibleL = CheckVisibility(linePointsL);
                 List<Vector3Int> visibleR = CheckVisibility(linePointsR);
@@ -69,13 +69,13 @@ namespace Wunderwunsch.HexGridSimplified
 
         public void RotateClockwise()
         {
-            lookDirection = Hex.Rotate60DegreeClockwise(Vector3Int.zero, lookDirection);
+            lookDirection = HexDepreciated.Rotate60DegreeClockwise(Vector3Int.zero, lookDirection);
             UpdateVisibleTiles();
         }
 
         public void RotateCounterClockwise()
         {
-            lookDirection = Hex.Rotate60DegreeCounterClockwise(Vector3Int.zero, lookDirection);
+            lookDirection = HexDepreciated.Rotate60DegreeCounterClockwise(Vector3Int.zero, lookDirection);
             UpdateVisibleTiles();
         }
            

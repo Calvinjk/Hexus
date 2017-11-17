@@ -8,7 +8,7 @@ namespace Wunderwunsch.HexGridSimplified
     {        
         public static Vector2Int WorldPositionToOffsetCoord(Vector3 p)
         {
-            float x = p.x / Constants.sqrt3;
+            float x = p.x / Mathf.Sqrt(3);
             float z = p.z;
             float temp = Mathf.Floor(x + z + 1);
 
@@ -19,7 +19,7 @@ namespace Wunderwunsch.HexGridSimplified
 
         public static Vector3Int WorldPositionToCubeCoord(Vector3 p)
         {
-            float x = p.x / Constants.sqrt3;
+            float x = p.x / Mathf.Sqrt(3);
             float z = p.z;
             float temp = Mathf.Floor(x + z + 1);
 
@@ -36,9 +36,9 @@ namespace Wunderwunsch.HexGridSimplified
         {
             float offsetXAdjustment;
             if (offsetPos.y % 2 == 0) offsetXAdjustment = 0;
-            else offsetXAdjustment = 0.5f * Constants.sqrt3;
+            else offsetXAdjustment = 0.5f * Mathf.Sqrt(3);
 
-            float offsetX = offsetPos.x * Constants.sqrt3 + offsetXAdjustment;
+            float offsetX = offsetPos.x * Mathf.Sqrt(3) + offsetXAdjustment;
             float offsetZ = offsetPos.y * 1.5f;
             return new Vector3(offsetX, 0, offsetZ);
         }
@@ -53,7 +53,7 @@ namespace Wunderwunsch.HexGridSimplified
 
         public static Vector3 CubeCoordToWorldPosition(Vector3Int cubeCoord, int yCoord = 0)
         {
-            float x = Constants.sqrt3 * (cubeCoord.x + cubeCoord.y / 2f);
+            float x = Mathf.Sqrt(3) * (cubeCoord.x + cubeCoord.y / 2f);
             float z = 3 / 2f * cubeCoord.y;
             float y = yCoord;
             return new Vector3(x, y, z);
@@ -76,7 +76,7 @@ namespace Wunderwunsch.HexGridSimplified
         public static Vector3Int WorldPositionToClosestEdge(Vector3 position)
         {
             Vector3Int tile = WorldPositionToCubeCoord(position);
-            var edges = Hex.GetEdgeCoordinatesOfTile(tile);
+            var edges = HexDepreciated.GetEdgeCoordinatesOfTile(tile);
 
             Vector3Int closestEdge = new Vector3Int(-1,-1,-1);
             float minDistanceSoFar = float.MaxValue;

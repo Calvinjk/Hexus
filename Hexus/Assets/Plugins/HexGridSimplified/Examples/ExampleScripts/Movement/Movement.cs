@@ -13,7 +13,7 @@ namespace Wunderwunsch.HexGridSimplified
         [SerializeField]
         protected MovementRulesData movementRulesData;
         [SerializeField]
-        protected GameManager gameManager = null;
+        protected GameManagerDepreciated gameManager = null;
         protected Map map;
         [SerializeField]
         protected int maxMovementPoints;

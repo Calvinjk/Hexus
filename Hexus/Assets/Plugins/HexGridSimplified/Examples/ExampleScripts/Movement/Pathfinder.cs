@@ -14,8 +14,8 @@ namespace Wunderwunsch.HexGridSimplified
         public static bool allowMoveIntoNegativeRemaining = false; // example: 1 movement point remaining, can still do 1 final move onto everything (like in civ5)
         public static List<PathNode> GetPath(Movement movement, Vector3Int origin, Vector3Int target, int minMovementCost) // should really return a Tuple<Vector3Int,int>()
         {
-            bool wrapX = Hex.WrapsHorizontal;
-            int mapSizeX = Hex.MapSize.x;
+            bool wrapX = HexDepreciated.WrapsHorizontal;
+            int mapSizeX = HexDepreciated.MapSize.x;
             int minCost = minMovementCost;
             //first thing we do is check if the target is a type which we just can't walk onto at all (mountain, or ocean for someone who can't embark
             //then we probably just return null?    
@@ -52,7 +52,7 @@ namespace Wunderwunsch.HexGridSimplified
                     targetNode = currentNode;
                     break; // we found target so lets not waste anytime!
                 }
-                List<Vector3Int> neighbours = Hex.GetNeighbours(currentNode.position, true);
+                List<Vector3Int> neighbours = HexDepreciated.GetNeighbours(currentNode.position, true);
 
                 foreach (Vector3Int n in neighbours)
                 {
@@ -84,7 +84,7 @@ namespace Wunderwunsch.HexGridSimplified
                     {
                         costByVisitedPosition.Remove(n); //need to benchmark if that is cheap enough, trying to remove it when it isn't there just does nothing which is what we want
                         Vector3Int targetModified = target;                        
-                        int astarRawPenalty = Hex.Distance(n, targetModified) * minCost; //a*star penalty needs to properly be converted into turns
+                        int astarRawPenalty = HexDepreciated.Distance(n, targetModified) * minCost; //a*star penalty needs to properly be converted into turns
                         int astarTurnsPenalty = astarRawPenalty / fullMovementPoints;
                         int astartMovePointPenalty = astarRawPenalty % fullMovementPoints;
                         int priority = 100000 * (costToThisNode.turnCost + astarTurnsPenalty) + (costToThisNode.movementPointCost + astartMovePointPenalty);
@@ -128,7 +128,7 @@ namespace Wunderwunsch.HexGridSimplified
                 PathNode currentNode = frontier.Dequeue();
                 runningCost = currentNode.costToThisNode.movementPointCost;
 
-                List<Vector3Int> neighbours = Hex.GetNeighbours(currentNode.position, true);
+                List<Vector3Int> neighbours = HexDepreciated.GetNeighbours(currentNode.position, true);
                 foreach (Vector3Int n in neighbours)
                 {
                     int moveCostToThisTile = movement.CalculateCostBetweenTiles(currentNode.position, n);

@@ -14,7 +14,7 @@ namespace Wunderwunsch.HexGridSimplified
         // Use this for initialization
         public void Init()
         {
-            mapWidth = Hex.MapSize.x * Constants.sqrt3;
+            mapWidth = HexDepreciated.MapSize.x * Mathf.Sqrt(3);
         }
 
         // Update is called once per frame

@@ -19,17 +19,17 @@ namespace Wunderwunsch.HexGridSimplified
 
         public override Map GenerateMap()
         {
-            Tile[,] tiles = GenerateTiles();
+            TileDepreciated[,] tiles = GenerateTiles();
             Dictionary<Vector3Int, Edge> edges = GenerateEdges();
 
             Map map = new Map(mapSize,  tiles, edges, wrapHorizontal, mapVisualisation);
-            Hex.SetMapAttributes(mapSize, wrapHorizontal);            
+            HexDepreciated.SetMapAttributes(mapSize, wrapHorizontal);            
             return map;
         }
 
-        private Tile[,] GenerateTiles()
+        private TileDepreciated[,] GenerateTiles()
         {
-            Tile[,] tiles = new Tile[mapSize.x, mapSize.y];
+            TileDepreciated[,] tiles = new TileDepreciated[mapSize.x, mapSize.y];
 
             for (int y = 0; y < mapSize.y; y++)
                 for (int x = 0; x < mapSize.x; x++)
@@ -51,7 +51,7 @@ namespace Wunderwunsch.HexGridSimplified
                         topographyValue = 0;
                     }
                     if (topographyValue == 2) vegetationValue = 0; //2 = Mountain for now, we don't put anything on mountains!
-                    Tile t = new Tile(terrainValue, topographyValue, vegetationValue);
+                    TileDepreciated t = new TileDepreciated(terrainValue, topographyValue, vegetationValue);
                     tiles[x, y] = t;
                 }
 
@@ -67,10 +67,10 @@ namespace Wunderwunsch.HexGridSimplified
                     if (rng > 8)
                     {
                         Vector3Int c = HexConverter.OffsetCoordToCubeCoord(new Vector2Int(x, y));
-                        List<Vector3Int> neighbours = Hex.GetNeighbours(c, false);
+                        List<Vector3Int> neighbours = HexDepreciated.GetNeighbours(c, false);
                         int randomIdx = Random.Range(0, 6);
                         Vector3Int other = neighbours[randomIdx];
-                        Vector3Int edgeCoord = Hex.GetEdgeCoordBetween(c, other);
+                        Vector3Int edgeCoord = HexDepreciated.GetEdgeCoordBetween(c, other);
 
                         if (edgesByCoord.ContainsKey(edgeCoord)) continue; //the other Tile already created an edge there which we don't overwrite
 

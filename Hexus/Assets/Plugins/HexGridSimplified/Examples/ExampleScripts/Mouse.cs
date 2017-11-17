@@ -29,18 +29,18 @@ namespace Wunderwunsch.HexGridSimplified
             CubePositionRaw = HexConverter.WorldPositionToCubeCoord(WorldPositionRaw);
             OffsetPositionRaw = HexConverter.WorldPositionToOffsetCoord(WorldPositionRaw);
 
-            CubePositionSanitized = Hex.WrapHorizontal(CubePositionRaw, Hex.MapSize.x);
-            CubePositionSanitized = Hex.ClampToBounds(CubePositionSanitized);
+            CubePositionSanitized = HexDepreciated.WrapHorizontal(CubePositionRaw, HexDepreciated.MapSize.x);
+            CubePositionSanitized = HexDepreciated.ClampToBounds(CubePositionSanitized);
             OffsetPositionSanitized = HexConverter.CubeCoordToOffsetCoord(CubePositionSanitized);
 
             float worldPositionWrapOffset = 0;
             if (CubePositionRaw.x < CubePositionSanitized.x)
             {
-                worldPositionWrapOffset = +Hex.MapSize.x * Constants.sqrt3;
+                worldPositionWrapOffset = +HexDepreciated.MapSize.x * Mathf.Sqrt(3);
             }
             else if (CubePositionRaw.x > CubePositionSanitized.x)
             {
-                worldPositionWrapOffset = -(Hex.MapSize.x * Constants.sqrt3);
+                worldPositionWrapOffset = -(HexDepreciated.MapSize.x * Mathf.Sqrt(3));
             }
 
             WorldPositionWrapped = new Vector3(WorldPositionRaw.x + worldPositionWrapOffset, WorldPositionRaw.y, WorldPositionRaw.z);

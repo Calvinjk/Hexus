@@ -39,11 +39,11 @@ namespace Wunderwunsch.HexGridSimplified
             int visionStrength = baseVisionRules.VisibilityByTopographyID[map.Tiles[posOffset.x, posOffset.y].Topography];
             //we check how good we can see from what we stand on
 
-            IEnumerable<Vector3Int> targets = Hex.GetRing(pos, ringSize, 1, false);
+            IEnumerable<Vector3Int> targets = HexDepreciated.GetRing(pos, ringSize, 1, false);
             foreach (var target in targets)
             {
-                List<Vector3Int> linePointsL = Hex.GetLine(pos, target, -0.00001f, 1, trimEndOfVisionLine, true);
-                List<Vector3Int> linePointsR = Hex.GetLine(pos, target, +0.00001f, 1, trimEndOfVisionLine, true);
+                List<Vector3Int> linePointsL = HexDepreciated.GetLine(pos, target, -0.00001f, 1, trimEndOfVisionLine, true);
+                List<Vector3Int> linePointsR = HexDepreciated.GetLine(pos, target, +0.00001f, 1, trimEndOfVisionLine, true);
                 //first param is LeftTrim => we don't need startCell so it's 1
 
                 List<Vector3Int> visibleL = CheckVisibility(visionStrength, linePointsL);
@@ -70,7 +70,7 @@ namespace Wunderwunsch.HexGridSimplified
             for (int i = 0; i <= idxLastSegment; i++)
             {
                 Vector2Int offsetCoord = HexConverter.CubeCoordToOffsetCoord(linePoints[i]);
-                Tile t = map.Tiles[offsetCoord.x, offsetCoord.y];
+                TileDepreciated t = map.Tiles[offsetCoord.x, offsetCoord.y];
                 Vector3Int cellPos = linePoints[i];
 
                 int visibilityTopography = baseVisionRules.VisibilityByTopographyID[t.Topography];

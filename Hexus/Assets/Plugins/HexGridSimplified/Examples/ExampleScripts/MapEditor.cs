@@ -15,7 +15,7 @@ namespace Wunderwunsch.HexGridSimplified
         [SerializeField]
         Mouse mouse = null;
         [SerializeField]
-        GameManager gameManager = null;
+        GameManagerDepreciated gameManager = null;
         Map map;
         [SerializeField]
         EventSystem eventSystem = null;

@@ -8,20 +8,10 @@ using UnityEngine;
 
 public class HexMetrics : MonoBehaviour {
 
-    public const float hexSize = 10f;
+    public const float hexSize = 1.9f;
 
     public const float outerRadius = hexSize;
     public const float innerRadius = outerRadius * 0.866025404f;
-
-    public const float pointyHeight = 2 * outerRadius;
-    public const float pointyRowHeight = 1.5f * outerRadius;
-    public const float pointyWidth = 2 * innerRadius;
-    public const float pointyExtraHeight = pointyHeight - pointyRowHeight;
-
-    public const float flatHeight = 2 * innerRadius;
-    public const float flatRowHeight = 1.5f * innerRadius;
-    public const float flatWidth = 2 * outerRadius;
-    public const float flatExtraHeight = flatHeight - flatRowHeight;
 
     // This will hold the corner points of the hexagons (pointy side up)
     public static Vector3[] pointyCorners = {

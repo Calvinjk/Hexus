@@ -8,7 +8,7 @@ namespace Wunderwunsch.HexGridSimplified
     public class VisibilityManager : MonoBehaviour
     {
         [SerializeField]
-        private GameManager gameManager = null;
+        private GameManagerDepreciated gameManager = null;
         private Map map;
         [SerializeField]
         private MapVisualisation mapVisualisation = null;

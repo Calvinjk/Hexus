@@ -43,8 +43,8 @@ namespace Wunderwunsch.HexGridSimplified
                 originMarker.transform.position = HexConverter.CubeCoordToWorldPosition(lineOrigin);
                 lineMarkers.Add(originMarker);
 
-                List<Vector3Int> lineL = Hex.GetLine(lineOrigin, currentPos, -0.0001f, 0, 0, true);
-                List<Vector3Int> lineR = Hex.GetLine(lineOrigin, currentPos, +0.0001f, 0, 0, true);
+                List<Vector3Int> lineL = HexDepreciated.GetLine(lineOrigin, currentPos, -0.0001f, 0, 0, true);
+                List<Vector3Int> lineR = HexDepreciated.GetLine(lineOrigin, currentPos, +0.0001f, 0, 0, true);
 
                 foreach(var l in lineL)
                 {
@@ -60,7 +60,7 @@ namespace Wunderwunsch.HexGridSimplified
                     lineMarkers.Add(marker);
                 }
             }
-            int distance = Hex.Distance(lineOrigin, currentPos);
+            int distance = HexDepreciated.Distance(lineOrigin, currentPos);
             uiText.text = "Distance: " + distance;
             prevMousePosition = currentPos;
         }

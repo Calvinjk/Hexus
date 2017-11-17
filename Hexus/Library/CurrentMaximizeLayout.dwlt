@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 14042}
   vertical: 0
-  controlID: 1703
+  controlID: 162
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 392}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 1678
+  controlID: 107
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 1679
+  controlID: 86
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -212,7 +212,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Plugins/HexGridSimplified/Examples/ExampleScripts/MapData
+    - Assets/Plugins/HexGridSimplified/Scripts
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -223,7 +223,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 5e220000
     m_LastClickedID: 8798
-    m_ExpandedIDs: 00000000222c0000282c00002c2c00003c2c00004c2c0000562c0000602c0000662c0000702c0000882c0000bc2c00000e2d0000102d0000
+    m_ExpandedIDs: 00000000a6270000ac270000b0270000c8270000da270000ec270000f027000008280000142800002628000034280000482800004a2800007c280000d2280000d4280000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -248,24 +248,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 300.9375}
-    m_SelectedIDs: 1c070000
-    m_LastClickedID: 1820
-    m_ExpandedIDs: 00000000222c0000282c00002c2c00003c2c00004c2c0000562c0000602c0000662c0000702c0000882c0000bc2c00000e2d0000102d0000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 90280000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 00000000a6270000ac270000b0270000c8270000ce270000da270000ec270000f027000008280000142800001a2800002628000034280000482800004a2800007c280000d2280000d4280000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: MapVisuals
+      m_OriginalName: MapVisuals
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 2110
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -276,8 +276,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 1c070000
-    m_LastClickedInstanceID: 1820
+    m_SelectedInstanceIDs: 90280000
+    m_LastClickedInstanceID: 10384
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
@@ -324,8 +324,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 459
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -359,9 +359,9 @@ MonoBehaviour:
     height: 438
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1c070000
-    m_LastClickedID: 0
-    m_ExpandedIDs: cedbffffd0f3ffff7cf7ffff00000000382e0000
+    m_SelectedIDs: 90280000
+    m_LastClickedID: 10384
+    m_ExpandedIDs: 8efbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 442}
   m_MaxSize: {x: 4004, y: 8042}
   vertical: 1
-  controlID: 1704
+  controlID: 141
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -546,9 +546,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.6685884, y: 0.0015591133, z: -0.0014023182, w: -0.7436298}
   m_Size:
-    m_Target: 22
+    m_Target: 10.620066
     speed: 2
-    m_Value: 22
+    m_Value: 10.620066
   m_Ortho:
     m_Target: 1
     speed: 2

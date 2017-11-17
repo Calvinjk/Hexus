@@ -29,19 +29,19 @@ namespace Wunderwunsch.HexGridSimplified
         {
             vertsPerTile = 6;
             TileWorldPositionCalculator offsetCalculator = HexConverter.OffsetCoordToWorldPosition;
-            List<Polygon> polygons = new List<Polygon>();
-            Polygon hexagon = Polygon.CreateNGon(vertsPerTile, Vector3.forward, Vector3.up, tilesHaveCentroid);
+            List<PolygonDepreciated> polygons = new List<PolygonDepreciated>();
+            PolygonDepreciated hexagon = PolygonDepreciated.CreateNGon(vertsPerTile, Vector3.forward, Vector3.up, tilesHaveCentroid);
             vertsPerTile = hexagon.Vertices.Length;
 
             for (int y = 0; y < mapSize.y; y++)
                 for (int x = 0; x < mapSize.x; x++)
                 {
                     Vector3 tileOffset = offsetCalculator(new Vector2Int(x, y));
-                    Polygon p = hexagon.OffsetPosition(tileOffset);
+                    PolygonDepreciated p = hexagon.OffsetPosition(tileOffset);
                     polygons.Add(p);
                 }
 
-            Polygon combined = Polygon.Combine(polygons);
+            PolygonDepreciated combined = PolygonDepreciated.Combine(polygons);
 
             Map = new GameObject();
             Map.AddComponent<MeshFilter>();
@@ -55,7 +55,7 @@ namespace Wunderwunsch.HexGridSimplified
         /// <summary>
         /// Assigns
         /// </summary>
-        public override void UpdateTileFeatures(Tile[,] cells)
+        public override void UpdateTileFeatures(TileDepreciated[,] cells)
         {
             if (mapMaterial.shader.name != "Wunderwunsch/SimpleMapVisualisation") //
             {
@@ -130,7 +130,7 @@ namespace Wunderwunsch.HexGridSimplified
             {
                 Vector3 worldPos = HexConverter.CubeCoordToWorldPosition(kvp.Key);
                 worldPos = new Vector3(worldPos.x, 1, worldPos.z);
-                float edgeDirection = Hex.GetEdgeDirectionAngle(kvp.Key);
+                float edgeDirection = HexDepreciated.GetEdgeDirectionAngle(kvp.Key);
                 int edgeType = kvp.Value.EdgeType;
                 GameObject edgePrefab = riverPrefab;                
                 var instance = GameObject.Instantiate(edgePrefab, worldPos / 2f, Quaternion.Euler(90, edgeDirection, 0)); //EdgeCoords are Sum of both Adjacent Tiles, that's why we divide By2

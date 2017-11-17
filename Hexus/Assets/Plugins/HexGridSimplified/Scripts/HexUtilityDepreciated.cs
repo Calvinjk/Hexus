@@ -7,7 +7,7 @@ namespace Wunderwunsch.HexGridSimplified
     /// <summary>
     /// Contains methods which you usually won't need to use directly but which are used by the Hex and HexInstance class
     /// </summary>
-    public static class HexUtility
+    public static class HexUtilityDepreciated
     {
         public static Vector3 LerpCube(Vector3Int a, Vector3Int b, float offsetFromCenter, float t)
         {
