@@ -27,6 +27,7 @@ public class HexCoordinates {
     }
 
     // This function can be called to transform World Coordinates into HexCoordinates
+    // Given a set of world corrdinates, this function will tell you which hex contains those coordinates
     public static HexCoordinates WorldToHex(Vector3 worldCoordinates, bool flatUp) {
         return new HexCoordinates(0, 0);
     }

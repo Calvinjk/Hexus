@@ -126,6 +126,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Hexus.CSharp.Plugins.csproj">
+      <Project>{BB722910-5B73-2918-C688-CB478C613A61}</Project>
+      <Name>Hexus.CSharp.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="Hexus.CSharp.csproj">
       <Project>{E5D71914-DA31-601B-540A-0151E845CBC1}</Project>
       <Name>Hexus.CSharp</Name>
@@ -133,6 +137,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\HexCoordinateDrawer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Plugins\HexGridSimplified\Examples\ExampleScripts\PriorityQueue\License.txt" />
+    <None Include="Assets\Plugins\HexGridSimplified\Examples\Shader\SimpleMapVisualisation.shader" />
+    <None Include="Assets\Plugins\HexGridSimplified\Scripts\License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
