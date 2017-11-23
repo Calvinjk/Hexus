@@ -35,10 +35,12 @@ namespace placeholder.Hexus {
                     Tile t = new Tile(cubeCoordinates);
                     tiles[x, y] = t;
 
-                    // Create the tile itself
+                    // Create the tile itself in the world view and assign its variables    
                     Tile tile = GameObject.Instantiate<Tile>(tilePrefab);
                     tile.transform.SetParent(transform, false);
                     tile.transform.localPosition = worldCoordinates;
+                    tile.name = cubeCoordinates.ToString();
+                    ((Tile)tile.GetComponent(typeof(Tile))).cubeCoordinates = cubeCoordinates;
 
                     // Make the tile visible
                     Mesh mesh = tile.GetComponent<MeshFilter>().mesh = new Mesh();

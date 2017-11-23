@@ -8,7 +8,7 @@ namespace placeholder.Hexus {
         [SerializeField]
         private HexusMapGenerator mapGenerator = null;
 
-        public MapInfo map { get; private set; }
+        public MapInfo map;
 
         void Start() {
             InitMap();
