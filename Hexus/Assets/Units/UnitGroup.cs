@@ -108,11 +108,11 @@ namespace placeholder.Hexus {
 
 		// Apply damage to affect the individual units making up the unit group
 		public void ApplyDamage(int damage) {
-			Random rnd = new Random();
+			System.Random rnd = new System.Random();
 			for (int i = 0; i < damage; i++) {
 				// Apply the damage amongst alive units. Units may die per iteration
 				List<Unit> aliveUnits = this.units.FindAll(delegate(Unit unit) {
-					return Unit.GameStatus.Alive == Unit.status;
+					return Unit.GameStatus.Alive == unit.Status;
 				});
 				int index = rnd.Next(aliveUnits.Count);
 				aliveUnits[index].ApplyDamage(1);

@@ -92,12 +92,6 @@ namespace placeholder.Hexus {
             return neighbours;
         }
 
-        /// Returns the edge coordinate between 2 tiles. Edge coordinate is the sum of both tile coordinates.
-        public static Vector3Int GetEdgeCoordBetween(Vector3Int a, Vector3Int b) {
-            Vector3Int EdgeCoordinate = a + b;
-            return EdgeCoordinate;
-        }
-
         /// Rotates the input position 60° in clockwise direction
         public static Vector3Int Rotate60DegreeClockwise(Vector3Int center, Vector3Int point) {
             Vector3Int direction = point - center;
@@ -116,76 +110,6 @@ namespace placeholder.Hexus {
             int rotatedZ = -direction.x;
             Vector3Int rotated = new Vector3Int(rotatedX, rotatedY, rotatedZ) + center;
             return rotated;
-        }
-
-        /// Returns the coordinates of all edges of a tile
-        public static HashSet<Vector3Int> GetEdgeCoordinatesOfTile(Vector3Int origin) {
-            HashSet<Vector3Int> edgeCoords = new HashSet<Vector3Int> {
-                new Vector3Int(2*origin.x+1,2*origin.y,2*(origin.z - 1)+1),
-                new Vector3Int(2*origin.x+1,2*(origin.y-1)+1,2*origin.z),
-                new Vector3Int(2*origin.x,2*(origin.y-1)+1,2*origin.z+1),
-                new Vector3Int(2*(origin.x-1)+1,2*origin.y,2*origin.z+1),
-                new Vector3Int(2*(origin.x-1)+1,2*origin.y+1,2*origin.z),
-                new Vector3Int(2*origin.x,2*origin.y+1,2*(origin.z-1)+1),
-            };
-
-            return edgeCoords;
-        }
-
-        /// Returns the tiles which share this edge.
-        public static List<Vector3Int> GetAdjacentTilesOfEdge(Vector3Int edge, bool removeInvalid) {
-            int tileAx = 0;
-            int tileAy = 0;
-            int tileAz = 0;
-            int tileBx = 0;
-            int tileBy = 0;
-            int tileBz = 0;
-
-            if (edge.x % 2 == 0) {
-                tileAx = edge.x / 2;
-                tileBx = edge.x / 2;
-                tileAy = (edge.y - 1) / 2;
-                tileAz = (edge.z + 1) / 2;
-                tileBy = (edge.y + 1) / 2;
-                tileBz = (edge.z - 1) / 2;
-            }
-
-            else if (edge.y % 2 == 0) {
-                tileAy = edge.y / 2;
-                tileBy = edge.y / 2;
-                tileAx = (edge.x + 1) / 2;
-                tileAz = (edge.z - 1) / 2;
-                tileBx = (edge.x - 1) / 2;
-                tileBz = (edge.z + 1) / 2;
-            }
-
-            else {
-                tileAz = edge.z / 2;
-                tileBz = edge.z / 2;
-                tileAx = (edge.x - 1) / 2;
-                tileAy = (edge.y + 1) / 2;
-                tileBx = (edge.x + 1) / 2;
-                tileBy = (edge.y - 1) / 2;
-            }
-
-            List<Vector3Int> tiles = new List<Vector3Int> {
-                new Vector3Int(tileAx, tileAy, tileAz),
-                new Vector3Int(tileBx, tileBy, tileBz)
-            };
-
-            return tiles.ToList();
-        }
-
-        /// returns the angle of the edge.
-        public static float GetEdgeDirectionAngle(Vector3Int edge) {
-
-            if (edge.y % 2 == 0) {
-                return 0;
-            } else if (edge.x % 2 == 0) {
-                return 120;
-            } else {
-                return 240;
-            }
         }
     }
 }

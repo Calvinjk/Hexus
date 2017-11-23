@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace placeholder.Hexus {
-<<<<<<< HEAD
 
 	abstract public class Unit : MonoBehaviour {
 
@@ -14,7 +13,7 @@ namespace placeholder.Hexus {
 	    protected int speed;
 		protected int range;
 		protected int defense;
-		protected GameStatus myStatus = Alive;
+		protected GameStatus myStatus = GameStatus.Alive;
 		protected List<UnitOrder.OrderType> availableOrders;
 		protected Player player;
 
@@ -69,7 +68,7 @@ namespace placeholder.Hexus {
 			}
 		}
 
-		public GameStatus status {
+		public GameStatus Status {
 			get {
 				return this.myStatus;
 			}
@@ -88,17 +87,4 @@ namespace placeholder.Hexus {
 			this.myStatus = GameStatus.Dead;
 		}
 	}
-=======
-    abstract public class Unit : MonoBehaviour {
-
-        // Member variables shared between every unit
-        protected int movementSpeed = 0;
-
-        // Member functions shared by every unit
-        public void MoveTo() {
-            // TODO - Movement logic once Hexs have been made
-        }
-
-    }
->>>>>>> 49df893ca2b1a0846f19fa1e03abf297aa421a87
 }

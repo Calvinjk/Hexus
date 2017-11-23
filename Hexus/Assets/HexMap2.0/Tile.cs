@@ -11,6 +11,5 @@ namespace placeholder.Hexus {
         public Tile(Vector3Int coord) {
             cubeCoordinates = coord;
         }
-        
     }
 }

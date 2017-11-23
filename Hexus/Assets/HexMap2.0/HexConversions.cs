@@ -68,25 +68,5 @@ namespace placeholder.Hexus {
             worldPos = new Vector3(worldPos.x / 2f, 1, worldPos.z / 2f);
             return worldPos;
         }
-
-        public static Vector3Int WorldPositionToClosestEdge(Vector3 position) {
-            Vector3Int tile = WorldPositionToCubeCoord(position);
-            var edges = Hex.GetEdgeCoordinatesOfTile(tile);
-
-            Vector3Int closestEdge = new Vector3Int(-1, -1, -1);
-            float minDistanceSoFar = float.MaxValue;
-            foreach (var edge in edges)
-            {
-                Vector3 worldPos = HexConversions.CubeCoordToWorldPosition(edge);
-                worldPos = new Vector3(worldPos.x / 2f, 1, worldPos.z / 2f);
-                float distance = Vector3.Distance(worldPos, position);
-                if (distance < minDistanceSoFar)
-                {
-                    closestEdge = edge;
-                    minDistanceSoFar = distance;
-                }
-            }
-            return closestEdge;
-        }
     }
 }
