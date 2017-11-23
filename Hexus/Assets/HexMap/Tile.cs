@@ -6,7 +6,7 @@ namespace placeholder.Hexus {
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class Tile : MonoBehaviour {
 
-        public Vector3Int cubeCoordinates { get; private set; }
+        public Vector3Int cubeCoordinates;
 
         public Tile(Vector3Int coord) {
             cubeCoordinates = coord;
