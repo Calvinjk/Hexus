@@ -8,7 +8,9 @@ namespace placeholder.Hexus {
         [SerializeField]
         private HexusMapGenerator mapGenerator = null;
 
-        public MapInfo map;
+        public MapInfo map = null;
+
+        public UnitGroup selectedUnitGroup = null;
 
         void Start() {
             InitMap();
@@ -16,6 +18,13 @@ namespace placeholder.Hexus {
 
         private void InitMap() {
             map = mapGenerator.GenerateMap();
+        }
+
+        void Update() {
+            // Allow deseletion of units
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                selectedUnitGroup = null;
+            }
         }
     }
 }

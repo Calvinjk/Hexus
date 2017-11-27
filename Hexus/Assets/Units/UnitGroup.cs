@@ -14,10 +14,13 @@ namespace placeholder.Hexus {
 		
 	public class UnitGroup : MonoBehaviour {
 
-		public static int MaxSize = 10;		// Total default size that a UnitGroup can hold
+        public static int MaxSize = 10;		// Total default size that a UnitGroup can hold
 		private List<Unit> units; 			// Units that make up the group
 		public UnitOrder myOrder;			// Order that this group of units are assigned
 		private Player player;				// Player this unit group belongs to
+        protected Vector3Int curPosition;   // The cube coordinates of the hex this group is occupying
+
+        private GameManager gameManager;    // Reference to the GameManager
 
 		public Player Player {
 			get {
@@ -146,6 +149,34 @@ namespace placeholder.Hexus {
 				}
 				return availableOrders;
 			}
+        }
+
+        // Get a reference to the GameManager upon awake
+        void Awake() {
+            gameManager = (GameManager)(GameObject.Find("GameManager").GetComponent(typeof(GameManager)));
+        }
+
+        // If the player "selects" this UnitGroup, lets allow it actions!
+        void OnMouseUpAsButton() {         
+            gameManager.selectedUnitGroup = this;
+        }
+
+        // Give a unitgroup a hex to move to and it should issue orders to all of its sub-units to move there
+        // after checking if the move is possible
+        // TODO - More sophisticated checking if a move is valid
+        public void MoveTo(Vector3Int destinationHex) {
+            // Check if the destination is within the UnitGroup's speed
+            if (Hex.Distance(curPosition, destinationHex) <= this.Speed) {
+                // Set new current hex and move all sub-units to the new hex
+                // TODO - for now, the code works for one unit only.  This function will need to tell each unit where to go so it looks nice in the hex.
+                curPosition = destinationHex;
+                this.transform.position = HexConversions.CubeCoordToWorldPosition(destinationHex);
+                foreach (Unit unit in this.units) {
+                    unit.MoveTo(this.transform.position);
+                }
+            } else {
+                print("Unit attempted to move to a position outside of its range of movement");
+            }
         }
 	}
 }

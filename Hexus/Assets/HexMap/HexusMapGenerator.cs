@@ -31,16 +31,15 @@ namespace placeholder.Hexus {
                     Vector3Int cubeCoordinates = HexConversions.OffsetCoordToCubeCoord(offsetCoordinates);
                     Vector3 worldCoordinates = HexConversions.OffsetCoordToWorldPosition(offsetCoordinates);
 
-                    // Add generated tile to array
-                    Tile t = new Tile(cubeCoordinates);
-                    tiles[x, y] = t;
-
                     // Create the tile itself in the world view and assign its variables    
                     Tile tile = GameObject.Instantiate<Tile>(tilePrefab);
                     tile.transform.SetParent(transform, false);
                     tile.transform.localPosition = worldCoordinates;
                     tile.name = cubeCoordinates.ToString();
                     ((Tile)tile.GetComponent(typeof(Tile))).cubeCoordinates = cubeCoordinates;
+
+                    // Add the generated tile to the array
+                    tiles[x, y] = tile;
 
                     // Make the tile visible
                     Mesh mesh = tile.GetComponent<MeshFilter>().mesh = new Mesh();

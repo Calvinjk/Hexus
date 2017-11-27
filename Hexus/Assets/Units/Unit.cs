@@ -9,6 +9,8 @@ namespace placeholder.Hexus {
 		public enum GameStatus { Alive, Dead };
 
 		protected int size;
+        protected int maxHealth;
+        protected int curHealth;
 		protected int power;
 	    protected int speed;
 		protected int range;
@@ -74,10 +76,14 @@ namespace placeholder.Hexus {
 			}
 		}
 
-		// Apply a damage to reduce this unit's power
+        public void MoveTo(Vector3 worldCoordinates) {
+            this.gameObject.transform.position = worldCoordinates;
+        }
+
+		// Apply a damage to reduce this unit's health
 		public void ApplyDamage(int damage) {
-			this.power -= damage;
-			if (this.power <= 0) {
+			this.curHealth -= damage;
+			if (this.curHealth <= 0) {
 				this.Die();
 			}
 		}
