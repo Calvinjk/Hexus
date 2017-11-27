@@ -33,8 +33,7 @@ namespace placeholder.Hexus {
             return new Vector3Int(cX, cY, cZ);
         }
 
-        // Potential TODO
-        // This is the only one that accounts for HexSize....
+        // Accounts for HexSize
         public static Vector3 OffsetCoordToWorldPosition(Vector2Int offsetPos) {
             float offsetXAdjustment;
             if (offsetPos.y % 2 == 0) offsetXAdjustment = 0;
@@ -52,9 +51,10 @@ namespace placeholder.Hexus {
             return new Vector3Int(x, y, z);
         }
 
+        // Accounts for HexSize
         public static Vector3 CubeCoordToWorldPosition(Vector3Int cubeCoord, int yCoord = 0) {
-            float x = SQRT3 * (cubeCoord.x + cubeCoord.y / 2f);
-            float z = 3 / 2f * cubeCoord.y;
+            float x = (2 * HexMetrics.innerRadius) * (cubeCoord.x + cubeCoord.y / 2f);
+            float z = (1.5f * HexMetrics.outerRadius) * cubeCoord.y;
             float y = yCoord;
             return new Vector3(x, y, z);
         }
