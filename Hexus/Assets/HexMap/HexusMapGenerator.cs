@@ -6,7 +6,7 @@ namespace placeholder.Hexus {
     public class HexusMapGenerator : MonoBehaviour {
         [SerializeField]
         protected Vector2Int mapSize;
-
+        public float boundrySize = .9f; // This scales the hexagon size down to boundrySize % to create borders of space between hexs
         public Tile tilePrefab;
 
         public void SetMapSize(Vector2Int mapSize) {
@@ -50,7 +50,6 @@ namespace placeholder.Hexus {
 					Vector3 tilePosition = tile.transform.position;
 
                     //Create each hexagon using 4 triangles
-                    float boundrySize = .9f; // 0.1f is 90% of hex size
                     int counter = 0;
 					verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
                     verticies.Add(HexMetrics.pointyCorners[4] * boundrySize);
