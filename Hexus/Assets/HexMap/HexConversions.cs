@@ -33,13 +33,15 @@ namespace placeholder.Hexus {
             return new Vector3Int(cX, cY, cZ);
         }
 
+        // Potential TODO
+        // This is the only one that accounts for HexSize....
         public static Vector3 OffsetCoordToWorldPosition(Vector2Int offsetPos) {
             float offsetXAdjustment;
             if (offsetPos.y % 2 == 0) offsetXAdjustment = 0;
-            else offsetXAdjustment = 0.5f * SQRT3;
+            else offsetXAdjustment = HexMetrics.innerRadius;
 
-            float offsetX = offsetPos.x * SQRT3 + offsetXAdjustment;
-            float offsetZ = offsetPos.y * 1.5f;
+            float offsetX = offsetPos.x * (2 * HexMetrics.innerRadius) + offsetXAdjustment;
+            float offsetZ = offsetPos.y * HexMetrics.outerRadius * 1.5f;
             return new Vector3(offsetX, 0, offsetZ);
         }
 

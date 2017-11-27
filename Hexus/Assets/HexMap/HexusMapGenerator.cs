@@ -50,28 +50,29 @@ namespace placeholder.Hexus {
 					Vector3 tilePosition = tile.transform.position;
 
                     //Create each hexagon using 4 triangles
+                    float boundrySize = .9f; // 0.1f is 90% of hex size
                     int counter = 0;
-					verticies.Add(HexMetrics.pointyCorners[3]);
-                    verticies.Add(HexMetrics.pointyCorners[4]);
-                    verticies.Add(HexMetrics.pointyCorners[5]);
+					verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[4] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[5] * boundrySize);
                     triangles.Add(counter++);
                     triangles.Add(counter++);
                     triangles.Add(counter++);
-                    verticies.Add(HexMetrics.pointyCorners[3]);
-                    verticies.Add(HexMetrics.pointyCorners[5]);
-                    verticies.Add(HexMetrics.pointyCorners[0]);
+                    verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[5] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[0] * boundrySize);
                     triangles.Add(counter++);
                     triangles.Add(counter++);
                     triangles.Add(counter++);
-                    verticies.Add(HexMetrics.pointyCorners[3]);
-                    verticies.Add(HexMetrics.pointyCorners[0]);
-                    verticies.Add(HexMetrics.pointyCorners[1]);
+                    verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[0] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[1] * boundrySize);
                     triangles.Add(counter++);
                     triangles.Add(counter++);
                     triangles.Add(counter++);
-                    verticies.Add(HexMetrics.pointyCorners[3]);
-                    verticies.Add(HexMetrics.pointyCorners[1]);
-                    verticies.Add(HexMetrics.pointyCorners[2]);
+                    verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[1] * boundrySize);
+                    verticies.Add(HexMetrics.pointyCorners[2] * boundrySize);
                     triangles.Add(counter++);
                     triangles.Add(counter++);
                     triangles.Add(counter++);

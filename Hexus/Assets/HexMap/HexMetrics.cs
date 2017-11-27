@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class HexMetrics : MonoBehaviour {
 
-    public const float hexSize = 0.9f;
+    public const float hexSize = 2f;
 
     public const float outerRadius = hexSize;
     public const float innerRadius = outerRadius * 0.866025404f;
