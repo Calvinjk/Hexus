@@ -7,21 +7,21 @@ namespace placeholder.Hexus {
         [SerializeField]
         protected Vector2Int mapSize;
         public float boundrySize = .9f; // This scales the hexagon size down to boundrySize % to create borders of space between hexs
-        public Tile tilePrefab;
+        public GameObject tilePrefab;
 
         public void SetMapSize(Vector2Int mapSize) {
             this.mapSize = mapSize;
         }
 
         public MapInfo GenerateMap() {
-            Tile[,] tiles = GenerateTiles();
+            GameObject[,] tiles = GenerateTiles();
 
             MapInfo map = new MapInfo(mapSize, tiles);
             return map;
         }
 
-        private Tile[,] GenerateTiles() {
-            Tile[,] tiles = new Tile[mapSize.x, mapSize.y];
+        private GameObject[,] GenerateTiles() {
+            GameObject[,] tiles = new GameObject[mapSize.x, mapSize.y];
 
             for (int y = 0; y < mapSize.y; ++y) {
                 for (int x = 0; x < mapSize.x; ++x) {
@@ -31,12 +31,8 @@ namespace placeholder.Hexus {
                     Vector3Int cubeCoordinates = HexConversions.OffsetCoordToCubeCoord(offsetCoordinates);
                     Vector3 worldCoordinates = HexConversions.OffsetCoordToWorldPosition(offsetCoordinates);
 
-                    // Add generated tile to array
-                    Tile t = new Tile(cubeCoordinates);
-                    tiles[x, y] = t;
-
                     // Create the tile itself in the world view and assign its variables    
-                    Tile tile = GameObject.Instantiate<Tile>(tilePrefab);
+                    GameObject tile = GameObject.Instantiate(tilePrefab);
                     tile.transform.SetParent(transform, true);
 					tile.transform.localPosition = worldCoordinates;
                     tile.name = cubeCoordinates.ToString();
@@ -82,6 +78,9 @@ namespace placeholder.Hexus {
                     mesh.RecalculateNormals();
 					mesh.RecalculateTangents();
 					mesh.RecalculateBounds();
+
+                    // Add generated tile to array
+                    tiles[x, y] = tile;
                 }
             }
 
