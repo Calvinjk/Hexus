@@ -19,7 +19,7 @@ namespace placeholder.Hexus {
 
         // Basic unit movement
         void OnMouseDown() {
-            print(cubeCoordinates.ToString() + " was clicked on!");
+            //print(cubeCoordinates.ToString() + " was clicked on!");
             if (gameManager.selectedUnitGroup) {
                 gameManager.selectedUnitGroup.MoveTo(this.cubeCoordinates);
 
