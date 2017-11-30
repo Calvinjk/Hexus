@@ -78,7 +78,7 @@ namespace placeholder.Hexus {
                     mesh.triangles = triangles.ToArray();
                     mesh.RecalculateNormals();
 					mesh.RecalculateTangents();
-					mesh.RecalculateBounds();
+                    mesh.RecalculateBounds();
 
                     // Add generated tile to array
                     tiles[x, y] = tile;

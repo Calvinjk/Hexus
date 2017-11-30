@@ -92,8 +92,12 @@ namespace placeholder.Hexus {
 			}
 		}
 
-		// Incorporate another unit into this unit group
-		public void addUnit (Unit unit) {
+
+        /////////////////////////////////////////////METHODS/////////////////////////////////////////////
+
+
+        // Incorporate another unit into this unit group
+        public void addUnit (Unit unit) {
 			if (this.Size + unit.Size > UnitGroup.MaxSize)
 				throw new UnitGroupSizeException("Unit cannot fit into the unit group");
 			else
@@ -157,8 +161,10 @@ namespace placeholder.Hexus {
         }
 
         // If the player "selects" this UnitGroup, lets allow it actions!
-        void OnMouseUpAsButton() {         
+        void OnMouseUpAsButton() {
+            if (gameManager.selectedUnitGroup) { gameManager.selectedUnitGroup.hightlightCurrentHex(true); }
             gameManager.selectedUnitGroup = this;
+            hightlightCurrentHex(false);
         }
 
         // Give a unitgroup a hex to move to and it should issue orders to all of its sub-units to move there
@@ -169,6 +175,7 @@ namespace placeholder.Hexus {
             if (Hex.Distance(curPosition, destinationHex) <= this.Speed) {
                 // Set new current hex and move all sub-units to the new hex
                 // TODO - for now, the code works for one unit only.  This function will need to tell each unit where to go so it looks nice in the hex.
+                hightlightCurrentHex(true);
                 curPosition = destinationHex;
                 this.transform.position = HexConversions.CubeCoordToWorldPosition(destinationHex);
                 foreach (Unit unit in this.units) {
@@ -178,6 +185,16 @@ namespace placeholder.Hexus {
                 print("Unit attempted to move to a position outside of its range of movement");
             }
         }
-	}
+
+        public void hightlightCurrentHex(bool deselectInstead) {
+            Vector2Int hexPos = HexConversions.CubeCoordToOffsetCoord(curPosition);
+            Renderer hexRenderer = gameManager.map.Tiles[hexPos.x, hexPos.y].GetComponent<Renderer>();
+            if (deselectInstead) {
+                hexRenderer.material.color = Color.white;
+            } else {
+                hexRenderer.material.color = Color.green;
+            }
+        }
+    }
 }
 
