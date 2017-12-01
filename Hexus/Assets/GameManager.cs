@@ -23,7 +23,8 @@ namespace placeholder.Hexus {
         void Update() {
             // Allow deseletion of units
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                selectedUnitGroup.hightlightCurrentHex(true);
+                selectedUnitGroup.HightlightCurrentHex(true);
+                selectedUnitGroup.HighlightMovementRange(true);
                 selectedUnitGroup = null;
             }
         }

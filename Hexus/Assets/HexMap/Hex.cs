@@ -25,11 +25,11 @@ namespace placeholder.Hexus {
         }
 
         /// Returns all tiles within a certain hex-grid manhattan distance of the origin
-        public static HashSet<Vector3Int> GetAllWithinManhattanRange(Vector3Int origin, int range, bool includeSelf) {
+        public static List<Vector2Int> GetAllWithinManhattanRange(Vector3Int origin, int range, bool includeSelf) {
 
             //Performance Tip if this turns out to be a bottleNeck in your games Performance: precalculate all the offsets for range 1,2,3,4,5,6... etc just once and store them in a list or dictionary
             //Don't optimize it when not needed though, keeping things simple should be the priority
-            HashSet<Vector3Int> positions = new HashSet<Vector3Int>();
+            List<Vector2Int> positions = new List<Vector2Int>();
 
             int minX = origin.x - range;
             int maxX = origin.x + range;
@@ -40,24 +40,24 @@ namespace placeholder.Hexus {
                 for (int y = minY; y <= maxY; y++) {
                     int z = -x - y;
                     if (Mathf.Abs(z - origin.z) > range) continue;
-                    positions.Add(new Vector3Int(x, y, z));
+                    positions.Add(HexConversions.CubeCoordToOffsetCoord(new Vector3Int(x, y, z)));
                 }
             }
 
-            if (!includeSelf) positions.Remove(origin);
+            if (!includeSelf) positions.Remove(HexConversions.CubeCoordToOffsetCoord(origin));
 
             return positions;
         }
 
         /// Returns all tiles which have a specific distance to the origin. Thickness goes inwards
-        public static HashSet<Vector3Int> GetRing(Vector3Int origin, int radius, int thickness) {
+        public static List<Vector3Int> GetRing(Vector3Int origin, int radius, int thickness) {
             //This is also not the most performant way to do it but again for almost all use cases it should be absolutely no issue.
             //If you happen to need a faster solution, again just precalculate the offets for each range once, store it in a list or dictionary and used that stored data 
-            HashSet<Vector3Int> ring = new HashSet<Vector3Int>();
-            HashSet<Vector3Int> allInManhattanrange = GetAllWithinManhattanRange(origin, radius, false);
+            List<Vector3Int> ring = new List<Vector3Int>();
+            List<Vector2Int> allInManhattanrange = GetAllWithinManhattanRange(origin, radius, false);
             foreach (var v in allInManhattanrange) {
-                if (Distance(origin, v) > radius - thickness) {
-                    ring.Add(v);
+                if (Distance(origin, HexConversions.OffsetCoordToCubeCoord(v)) > radius - thickness) {
+                    ring.Add(HexConversions.OffsetCoordToCubeCoord(v));
                 }
             }
 

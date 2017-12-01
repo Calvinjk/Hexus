@@ -95,6 +95,10 @@ namespace placeholder.Hexus {
 
         ///////////////////////////////////////////// METHODS /////////////////////////////////////////////
 
+        // Get a reference to the GameManager upon awake
+        void Awake() {
+            gameManager = (GameManager)(GameObject.Find("GameManager").GetComponent(typeof(GameManager)));
+        }
 
         // Incorporate another unit into this unit group
         public void addUnit (Unit unit) {
@@ -155,16 +159,12 @@ namespace placeholder.Hexus {
 			}
         }
 
-        // Get a reference to the GameManager upon awake
-        void Awake() {
-            gameManager = (GameManager)(GameObject.Find("GameManager").GetComponent(typeof(GameManager)));
-        }
-
         // If the player "selects" this UnitGroup, lets allow it actions!
         void OnMouseUpAsButton() {
-            if (gameManager.selectedUnitGroup) { gameManager.selectedUnitGroup.hightlightCurrentHex(true); }
+            if (gameManager.selectedUnitGroup) { gameManager.selectedUnitGroup.HightlightCurrentHex(true); }
             gameManager.selectedUnitGroup = this;
-            hightlightCurrentHex(false);
+            HightlightCurrentHex(false);
+            HighlightMovementRange(false);
         }
 
         private List<Vector3> getUnitPositions(int numUnits) {
@@ -245,7 +245,8 @@ namespace placeholder.Hexus {
             if (Hex.Distance(curPosition, destinationHex) <= this.Speed) {
                 // Set new current hex and move all sub-units to the new hex
                 // TODO - for now, the code works for one unit only.  This function will need to tell each unit where to go so it looks nice in the hex.
-                hightlightCurrentHex(true);
+                HightlightCurrentHex(true);
+                HighlightMovementRange(true);
                 curPosition = destinationHex;
                 this.transform.position = HexConversions.CubeCoordToWorldPosition(destinationHex);
                 List<Vector3> unitPositions = getUnitPositions(units.Count);
@@ -259,13 +260,29 @@ namespace placeholder.Hexus {
             }
         }
 
-        public void hightlightCurrentHex(bool deselectInstead) {
+        public void HightlightCurrentHex(bool deselectInstead) {
             Vector2Int hexPos = HexConversions.CubeCoordToOffsetCoord(curPosition);
             Renderer hexRenderer = gameManager.map.Tiles[hexPos.x, hexPos.y].GetComponent<Renderer>();
             if (deselectInstead) {
                 hexRenderer.material.color = Color.white;
             } else {
                 hexRenderer.material.color = Color.green;
+            }
+        }
+
+        public void HighlightMovementRange(bool deselectInstead) {
+            List<Vector2Int> validHexs = Hex.GetAllWithinManhattanRange(curPosition, Speed, false);
+            foreach (Vector2Int hexOffset in validHexs) {
+                // Sterilize first
+                if (hexOffset.x < 0 || hexOffset.y < 0) continue;
+                if (hexOffset.x >= gameManager.map.MapSize.x || hexOffset.y >= gameManager.map.MapSize.y) continue;
+
+                Renderer hexRenderer = gameManager.map.Tiles[hexOffset.x, hexOffset.y].GetComponent<Renderer>();
+                if (deselectInstead) {
+                    hexRenderer.material.color = Color.white;
+                } else {
+                    hexRenderer.material.color = Color.blue;
+                }
             }
         }
     }
