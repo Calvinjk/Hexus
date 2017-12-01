@@ -21,10 +21,10 @@ namespace placeholder.Hexus {
         void OnMouseDown() {
             //print(cubeCoordinates.ToString() + " was clicked on!");
             if (gameManager.selectedUnitGroup) {
-                gameManager.selectedUnitGroup.MoveTo(this.cubeCoordinates);
-
-                // Once the unitgroup has moved, deselect the unitgroup
-                gameManager.selectedUnitGroup = null;
+                if (gameManager.selectedUnitGroup.MoveTo(this.cubeCoordinates)) {
+                    // Once the unitgroup has moved, deselect the unitgroup
+                    gameManager.selectedUnitGroup = null;
+                }
             }
         }
     }

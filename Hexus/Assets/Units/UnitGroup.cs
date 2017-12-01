@@ -240,7 +240,7 @@ namespace placeholder.Hexus {
         // Give a unitgroup a hex to move to and it should issue orders to all of its sub-units to move there
         // after checking if the move is possible
         // TODO - More sophisticated checking if a move is valid
-        public void MoveTo(Vector3Int destinationHex) {
+        public bool MoveTo(Vector3Int destinationHex) {
             // Check if the destination is within the UnitGroup's speed
             if (Hex.Distance(curPosition, destinationHex) <= this.Speed) {
                 // Set new current hex and move all sub-units to the new hex
@@ -252,8 +252,10 @@ namespace placeholder.Hexus {
                 for(int i = 0; i < units.Count; ++i) {
                     units[i].MoveTo(this.transform.position + unitPositions[i]);
                 }
+                return true;
             } else {
                 Debug.Log("Squad attempted to move to a position outside of its range of movement");
+                return false;
             }
         }
 
