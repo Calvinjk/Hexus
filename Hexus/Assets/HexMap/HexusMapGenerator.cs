@@ -37,7 +37,7 @@ namespace placeholder.Hexus {
 					tile.transform.localPosition = worldCoordinates;
                     tile.name = cubeCoordinates.ToString();
                     ((Tile)tile.GetComponent(typeof(Tile))).cubeCoordinates = cubeCoordinates;
-                    tile.GetComponent<BoxCollider>().size = new Vector3(HexMetrics.hexSize, 0.1f, HexMetrics.hexSize);
+                    tile.GetComponent<BoxCollider>().size = new Vector3(HexMetrics.hexSize * 1.2f, 0.1f, HexMetrics.hexSize * 1.2f);
 
                     // Make the tile visible
                     Mesh mesh = tile.GetComponent<MeshFilter>().mesh = new Mesh();
