@@ -4,18 +4,19 @@ using UnityEngine;
 
 namespace placeholder.Hexus {
 
-	abstract public class Unit : MonoBehaviour {
+	public abstract class Unit : MonoBehaviour {
 
-		public enum GameStatus { Alive, Dead };
+		public enum GameStatus { Alive, Dead }; 
 
-		protected int size;
-        protected int maxHealth;
-        protected int curHealth;
-		protected int power;
-	    protected int speed;
-		protected int range;
-		protected int defense;
-		protected GameStatus myStatus = GameStatus.Alive;
+        [SerializeField] protected string name;
+        [SerializeField] protected int size;
+        [SerializeField] protected int maxHealth;
+        [SerializeField] protected int curHealth;
+		[SerializeField] protected int power;
+	    [SerializeField] protected int speed;
+		[SerializeField] protected int range;
+		[SerializeField] protected int defense;
+		[SerializeField] protected GameStatus myStatus = GameStatus.Alive;
 		protected List<UnitOrder.OrderType> availableOrders;
 		protected Player player;
 

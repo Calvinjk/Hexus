@@ -15,7 +15,7 @@ namespace placeholder.Hexus {
 	public class UnitGroup : MonoBehaviour {
 
         public static int MaxSize = 10;		// Total default size that a UnitGroup can hold
-		private List<Unit> units; 			// Units that make up the group
+		public List<Unit> units; 			// Units that make up the group
 		public UnitOrder myOrder;			// Order that this group of units are assigned
 		private Player player;				// Player this unit group belongs to
         protected Vector3Int curPosition;   // The cube coordinates of the hex this group is occupying
@@ -93,7 +93,7 @@ namespace placeholder.Hexus {
 		}
 
 
-        /////////////////////////////////////////////METHODS/////////////////////////////////////////////
+        ///////////////////////////////////////////// METHODS /////////////////////////////////////////////
 
 
         // Incorporate another unit into this unit group
@@ -167,6 +167,76 @@ namespace placeholder.Hexus {
             hightlightCurrentHex(false);
         }
 
+        private List<Vector3> getUnitPositions(int numUnits) {
+            List<Vector3> positions = new List<Vector3>();
+            switch (numUnits) {
+                case 9:
+                    positions.Add(new Vector3(-4, 0, 4));
+                    positions.Add(new Vector3(0, 0, 4));
+                    positions.Add(new Vector3(4, 0, 4));
+                    positions.Add(new Vector3(-4, 0, 0));
+                    positions.Add(new Vector3(0, 0, 0));
+                    positions.Add(new Vector3(4, 0, 0));
+                    positions.Add(new Vector3(-4, 0, -4));
+                    positions.Add(new Vector3(0, 0, -4));
+                    positions.Add(new Vector3(4, 0, -4));
+                    break;
+                case 8:
+                    positions.Add(new Vector3(-4, 0, 4));
+                    positions.Add(new Vector3(0, 0, 4));
+                    positions.Add(new Vector3(4, 0, 4));
+                    positions.Add(new Vector3(-2, 0, 0));
+                    positions.Add(new Vector3(2, 0, 0));
+                    positions.Add(new Vector3(-4, 0, -4));
+                    positions.Add(new Vector3(0, 0, -4));
+                    positions.Add(new Vector3(4, 0, -4));
+                    break;
+                case 7:
+                    positions.Add(new Vector3(-4, 0, 4));
+                    positions.Add(new Vector3(0, 0, 4));
+                    positions.Add(new Vector3(4, 0, 4));
+                    positions.Add(new Vector3(0, 0, 0));
+                    positions.Add(new Vector3(-4, 0, -4));
+                    positions.Add(new Vector3(0, 0, -4));
+                    positions.Add(new Vector3(4, 0, -4));
+                    break;
+                case 6:
+                    positions.Add(new Vector3(0, 0, 4));
+                    positions.Add(new Vector3(-4, 0, 2));
+                    positions.Add(new Vector3(4, 0, 2));
+                    positions.Add(new Vector3(-4, 0, -2));
+                    positions.Add(new Vector3(4, 0, -2));
+                    positions.Add(new Vector3(0, 0, -4));
+                    break;
+                case 5:
+                    positions.Add(new Vector3(-4, 0, 4));
+                    positions.Add(new Vector3(4, 0, 4));
+                    positions.Add(new Vector3(0, 0, 0));
+                    positions.Add(new Vector3(-4, 0, -4));
+                    positions.Add(new Vector3(4, 0, -4));
+                    break;
+                case 4:
+                    positions.Add(new Vector3(-3, 0, 3));
+                    positions.Add(new Vector3(3, 0, 3));
+                    positions.Add(new Vector3(-3, 0, -3));
+                    positions.Add(new Vector3(3, 0, -3));
+                    break;
+                case 3:
+                    positions.Add(new Vector3(0, 0, 4));
+                    positions.Add(new Vector3(-4, 0, -2));
+                    positions.Add(new Vector3(4, 0, -2));
+                    break;
+                case 2:
+                    positions.Add(new Vector3(-3, 0, 0));
+                    positions.Add(new Vector3(3, 0, 0));
+                    break;
+                case 1:
+                    positions.Add(new Vector3(0, 0, 0));
+                    break;
+            }
+            return positions;
+        }
+
         // Give a unitgroup a hex to move to and it should issue orders to all of its sub-units to move there
         // after checking if the move is possible
         // TODO - More sophisticated checking if a move is valid
@@ -178,11 +248,12 @@ namespace placeholder.Hexus {
                 hightlightCurrentHex(true);
                 curPosition = destinationHex;
                 this.transform.position = HexConversions.CubeCoordToWorldPosition(destinationHex);
-                foreach (Unit unit in this.units) {
-                    unit.MoveTo(this.transform.position);
+                List<Vector3> unitPositions = getUnitPositions(units.Count);
+                for(int i = 0; i < units.Count; ++i) {
+                    units[i].MoveTo(this.transform.position + unitPositions[i]);
                 }
             } else {
-                print("Unit attempted to move to a position outside of its range of movement");
+                Debug.Log("Squad attempted to move to a position outside of its range of movement");
             }
         }
 

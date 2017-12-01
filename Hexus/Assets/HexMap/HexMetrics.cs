@@ -22,13 +22,4 @@ public class HexMetrics : MonoBehaviour {
         new Vector3(-innerRadius, 0f, -0.5f * outerRadius),
         new Vector3(-innerRadius, 0f, 0.5f * outerRadius)
     };
-
-    public static Vector3[] flatCorners = {
-        new Vector3(0.5f * outerRadius, 0f, innerRadius),
-        new Vector3(outerRadius, 0f, 0f),
-        new Vector3(0.5f * outerRadius, 0f, -innerRadius),
-        new Vector3(-0.5f * outerRadius, 0f, -innerRadius),
-        new Vector3(-outerRadius, 0f, 0f),
-        new Vector3(-0.5f * outerRadius, 0f, innerRadius)
-    };
 }
