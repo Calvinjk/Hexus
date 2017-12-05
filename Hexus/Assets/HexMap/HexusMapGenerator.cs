@@ -6,7 +6,6 @@ namespace placeholder.Hexus {
     public class HexusMapGenerator : MonoBehaviour {
         [SerializeField]
         protected Vector2Int mapSize;
-        public float boundrySize = .9f; // This scales the hexagon size down to boundrySize % to create borders of space between hexs
         public GameObject tilePrefab;
 
         public void SetMapSize(Vector2Int mapSize) {
@@ -37,48 +36,6 @@ namespace placeholder.Hexus {
 					tile.transform.localPosition = worldCoordinates;
                     tile.name = cubeCoordinates.ToString();
                     ((Tile)tile.GetComponent(typeof(Tile))).cubeCoordinates = cubeCoordinates;
-                    tile.GetComponent<BoxCollider>().size = new Vector3(HexMetrics.hexSize * 1.2f, 0.1f, HexMetrics.hexSize * 1.2f);
-
-                    // Make the tile visible
-                    Mesh mesh = tile.GetComponent<MeshFilter>().mesh = new Mesh();
-                    List<Vector3> verticies = new List<Vector3>();
-                    List<int> triangles = new List<int>();
-
-					Vector3 tilePosition = tile.transform.position;
-
-                    //Create each hexagon using 4 triangles
-                    int counter = 0;
-					verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[4] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[5] * boundrySize);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-                    verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[5] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[0] * boundrySize);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-                    verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[0] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[1] * boundrySize);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-                    verticies.Add(HexMetrics.pointyCorners[3] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[1] * boundrySize);
-                    verticies.Add(HexMetrics.pointyCorners[2] * boundrySize);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-                    triangles.Add(counter++);
-
-                    //Put the triangles into the mesh
-                    mesh.vertices = verticies.ToArray();
-                    mesh.triangles = triangles.ToArray();
-                    mesh.RecalculateNormals();
-					mesh.RecalculateTangents();
-                    mesh.RecalculateBounds();
 
                     // Add generated tile to array
                     tiles[x, y] = tile;
