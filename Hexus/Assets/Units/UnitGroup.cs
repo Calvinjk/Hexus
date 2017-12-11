@@ -161,10 +161,10 @@ namespace placeholder.Hexus {
 
         // If the player "selects" this UnitGroup, lets allow it actions!
         void OnMouseUpAsButton() {
-            if (gameManager.selectedUnitGroup) { gameManager.selectedUnitGroup.HightlightCurrentHex(true); }
+            if (gameManager.selectedUnitGroup) { gameManager.selectedUnitGroup.HightlightCurrentHex(Color.blue); }
             gameManager.selectedUnitGroup = this;
-            HightlightCurrentHex(false);
-            HighlightMovementRange(false);
+            HightlightCurrentHex(Color.blue);
+            HighlightMovementRange(Color.green);
         }
 
         private List<Vector3> getUnitPositions(int numUnits) {
@@ -245,8 +245,8 @@ namespace placeholder.Hexus {
             if (Hex.Distance(curPosition, destinationHex) <= this.Speed) {
                 // Set new current hex and move all sub-units to the new hex
                 // TODO - for now, the code works for one unit only.  This function will need to tell each unit where to go so it looks nice in the hex.
-                HightlightCurrentHex(true);
-                HighlightMovementRange(true);
+                HightlightCurrentHex(Color.white);
+                HighlightMovementRange(Color.white);
                 curPosition = destinationHex;
                 this.transform.position = HexConversions.CubeCoordToWorldPosition(destinationHex);
                 List<Vector3> unitPositions = getUnitPositions(units.Count);
@@ -260,29 +260,21 @@ namespace placeholder.Hexus {
             }
         }
 
-        public void HightlightCurrentHex(bool deselectInstead) {
+        public void HightlightCurrentHex(Color color) {
             Vector2Int hexPos = HexConversions.CubeCoordToOffsetCoord(curPosition);
-            Renderer hexRenderer = gameManager.map.Tiles[hexPos.x, hexPos.y].GetComponent<Renderer>();
-            if (deselectInstead) {
-                hexRenderer.material.color = Color.white;
-            } else {
-                hexRenderer.material.color = Color.green;
-            }
+            Tile tile = (Tile)gameManager.map.Tiles[hexPos.x, hexPos.y].GetComponent(typeof(Tile));
+            tile.HightlightHex(color);
         }
 
-        public void HighlightMovementRange(bool deselectInstead) {
+        public void HighlightMovementRange(Color color) {
             List<Vector2Int> validHexs = Hex.GetAllWithinManhattanRange(curPosition, Speed, false);
             foreach (Vector2Int hexOffset in validHexs) {
                 // Sterilize first
                 if (hexOffset.x < 0 || hexOffset.y < 0) continue;
                 if (hexOffset.x >= gameManager.map.MapSize.x || hexOffset.y >= gameManager.map.MapSize.y) continue;
 
-                Renderer hexRenderer = gameManager.map.Tiles[hexOffset.x, hexOffset.y].GetComponent<Renderer>();
-                if (deselectInstead) {
-                    hexRenderer.material.color = Color.white;
-                } else {
-                    hexRenderer.material.color = Color.blue;
-                }
+                Tile tile = (Tile)gameManager.map.Tiles[hexOffset.x, hexOffset.y].GetComponent(typeof(Tile));
+                tile.HightlightHex(color);
             }
         }
     }

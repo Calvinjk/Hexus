@@ -27,5 +27,9 @@ namespace placeholder.Hexus {
                 }
             }
         }
+
+        public void HightlightHex(Color color) {
+            GetComponent<Renderer>().material.color = color;
+        }
     }
 }
